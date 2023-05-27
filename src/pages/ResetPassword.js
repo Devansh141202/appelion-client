@@ -1,12 +1,11 @@
-import { Button, Form, Input } from "antd";
-import React, { useRef } from "react";
+import { Form, Input } from "antd";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import "./Register.css";
-import registerImage from "./login-image.png";
 import MainLogo from "../logo1.png";
 
 export default function ResetPassword() {
@@ -40,7 +39,7 @@ export default function ResetPassword() {
 
       delete values["confirm-new-password"];
 
-      console.log(`/api/user${window.location.pathname}`);
+      // console.log(`/api/user${window.location.pathname}`);
       const response = await axios.post(
         `http://34.131.197.1/api/user${window.location.pathname}`,
         values

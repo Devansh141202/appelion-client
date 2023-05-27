@@ -1,26 +1,24 @@
-import { Button, Form, Input } from "antd";
-import React, { useRef } from "react";
+import {  Form} from "antd";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import "./Register.css";
-import ReCAPTCHA from "react-google-recaptcha";
 import './VerifyEmail.css'
 import mail_icon from './icon_mail.png'
 import MainLogo from "../logo1.png";
 // import icon_mail from '../../public/icon_mail.png';
 
 export default function VerifyEmail() {
-  console.log("verify email");
-  const captchaRef = useRef(null);
+  // console.log("verify email");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = async () => {
     try {
       dispatch(showLoading());
-      console.log(`/api/user${window.location.pathname}`);
+      // console.log(`/api/user${window.location.pathname}`);
       const response = await axios.get(`http://34.131.197.1/api/user${window.location.pathname}`);
       dispatch(hideLoading());
       if (response.data.success) {

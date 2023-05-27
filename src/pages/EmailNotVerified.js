@@ -12,14 +12,12 @@ import { setUser } from "../redux/userSlice";
 import MainLogo from "../logo1.png";
 
 export default function EmailNotVerified() {
-  console.log("verify email");
   const captchaRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = async () => {
     try {
       dispatch(showLoading());
-      console.log(`/api/user${window.location.pathname}`);
       const response = await axios
         .get(`http://34.131.197.1/api/user/resend-verification-email`, {
           headers: {

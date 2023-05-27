@@ -28,7 +28,6 @@ function Appointments() {
                 }
             });
             dispatch(hideLoading());
-            console.log(response.data);
             if (response.data.success) {
                 setAppointments(response.data.data);
             }

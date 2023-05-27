@@ -1,13 +1,12 @@
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import React, { useRef } from "react";
 import toast from "react-hot-toast";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import "./Login.css";
 import LoginImage from "./login-image.png";
-import ForgotPassword from "./ForgotPassword";
 import ReCAPTCHA from "react-google-recaptcha";
 import MainLogo from "../logo1.png";
 
@@ -43,47 +42,53 @@ function Login() {
 
     return (
         <>
-            <div className="login-container">
-                <div className="login-inside-container">
-                    <div className="login-main-container">
-                        <div className="login-image-container">
-                            <img src={LoginImage} alt="login" />
-                        </div>
-                        <div className="login-main-part-container">
-                            <div className="login-data">
-                            <div>
-                                <img src={MainLogo} alt="logo" width={"100px"} height={"100px"} />
-                            </div>
-                                <div className="greeting-message">Welcome back</div>
-                                <Form layout="vertical" onFinish={onFinish}>
-                                    <Form.Item label="Email" name="email">
-                                        <Input placeholder="Your Email" />
-                                    </Form.Item>
-                                    <Form.Item label="Password" name="password">
-                                        <Input placeholder="Your Password" type="password" />
-                                    </Form.Item>
-                                    <ReCAPTCHA
-                                        sitekey={process.env.REACT_APP_SITE_KEY}
-                                        ref={captchaRef} />
-                                    <Link
-                                        className="link-for-forgot-password"
-                                        to="/forgot-password/"
-                                    >
-                                        <span> forgot password ?</span>
-                                    </Link> 
-                                    <button className="login-button" htmlType="submit">
-                                        LOGIN
-                                    </button>
-                                    <Link className="link-for-register" to="/register">
-                                        <span> Don’t have an account ?</span>
-                                        <span> Register here</span>
-                                    </Link>
-                                </Form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div className="login-container">
+        <div className="login-inside-container">
+          <div className="login-main-container">
+            <div className="login-image-container">
+              <img src={LoginImage} alt="login" />
             </div>
+            <div className="login-main-part-container">
+              <div className="login-data">
+                <div>
+                  <img
+                    src={MainLogo}
+                    alt="logo"
+                    width={"100px"}
+                    height={"100px"}
+                  />
+                </div>
+                <div className="greeting-message">Welcome back</div>
+                <Form layout="vertical" onFinish={onFinish}>
+                  <Form.Item label="Email" name="email">
+                    <Input placeholder="Your Email" />
+                  </Form.Item>
+                  <Form.Item label="Password" name="password">
+                    <Input placeholder="Your Password" type="password" />
+                  </Form.Item>
+                  <Link
+                    className="link-for-forgot-password"
+                    to="/forgot-password/"
+                  >
+                    <span> forgot password ?</span>
+                  </Link>
+                  <ReCAPTCHA
+                    sitekey={process.env.REACT_APP_SITE_KEY}
+                    ref={captchaRef}
+                  />
+                  <button className="login-button" htmltype="submit">
+                    LOGIN
+                  </button>
+                  <Link className="link-for-register" to="/register">
+                    <span> Don’t have an account ?</span>
+                    <span> Register here</span>
+                  </Link>
+                </Form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </>
     );
 }

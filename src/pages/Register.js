@@ -1,4 +1,4 @@
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -6,9 +6,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import "./Register.css";
-
+import MainLogo from "../logo1.png";
 import ReCAPTCHA from "react-google-recaptcha";
-import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 
 function Register() {
     const captchaRef = useRef(null);
@@ -16,7 +15,7 @@ function Register() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const onFinish = async (values) => {
-        console.log(values);
+        // console.log(values);
         const {
             name,
             username,
@@ -52,13 +51,13 @@ function Register() {
             return toast.error("Invalid mobile number");
         }
 
-        // if (!whatsappNumber || !whatsappNumber.trim()) {
-        //     return toast.error("WhatsApp number cannot be empty");
-        // }
+        if (!whatsappNumber || !whatsappNumber.trim()) {
+            return toast.error("WhatsApp number cannot be empty");
+        }
 
-        // if (!mobileNumberRegex.test(whatsappNumber)) {
-        //     return toast.error("Invalid Indian Whatsapp number");
-        // }
+        if (!mobileNumberRegex.test(whatsappNumber)) {
+            return toast.error("Invalid Indian Whatsapp number");
+        }
 
         if (password.length < 6) {
             return toast.error("Password should be at least 6 characters long");
@@ -102,125 +101,115 @@ function Register() {
 
     return (
         <>
-            <div className="register-container">
-                <div className="register-inside-container">
-                    <div className="title">REGISTER</div>
-                    <hr style={{ width: "100%", borderBottom: "3px solid black" }} />
-                    <div className="register-data">
-                        <Form layout="vertical" onFinish={onFinish}>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    padding: "30px",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: "30px",
-                                }}
-                            >
-                                <Form.Item
-                                    style={{
-                                        minWidth: "300px",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                    }}
-                                    label="Name"
-                                    name="name"
-                                >
-                                    <Input placeholder="Name" type="text" />
-                                </Form.Item>
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="Username"
-                                    name="username"
-                                >
-                                    <Input placeholder="Username" />
-                                </Form.Item>
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="Email"
-                                    name="email"
-                                >
-                                    <Input placeholder="Email" type="text" />
-                                </Form.Item>
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="MobileNumber"
-                                    name="mobileNumber"
-                                >
-                                    <Input placeholder="MobileNumber" type="number" />
-                                </Form.Item>
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="WhatsappNumber"
-                                    name="whatsappNumber"
-                                >
-                                    <Input placeholder="WhatsappNumber" type="number" />
-                                </Form.Item>
-                            </div>
-                            <hr style={{ width: "100%", borderBottom: "1px solid black" }} />
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    padding: "30px",
-                                    gap: "30px",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="Password"
-                                    name="password"
-                                >
-                                    <Input
-                                        placeholder="Password"
-                                        type={showPassword ? "text" : "password"}
-                                    />
-                                </Form.Item>
-
-                                {/* <button
-                  className="toggle-button"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <RiEyeOffLine /> : <RiEyeLine />}
-                </button> */}
-
-                                <Form.Item
-                                    style={{ minWidth: "300px" }}
-                                    label="ConfirmPassword"
-                                    name="confirmPassword"
-                                >
-                                    <Input placeholder="ConfirmPassword" type="password" />
-                                </Form.Item>
-                                <ReCAPTCHA
-                                    style={{ marginTop: "10px" }}
-                                    sitekey={process.env.REACT_APP_SITE_KEY}
-                                    ref={captchaRef}
-                                />
-                            </div>
-
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    flexDirection: "column",
-                                }}
-                            >
-                                <button className="register-button" type="submit">
-                                    REGISTER
-                                </button>
-                                <Link to="/login" className="link-for-login">
-                                    <span> Already have an account ?</span>
-                                    <span> Login here</span>
-                                </Link>
-                            </div>
-                        </Form>
-                    </div>
+        <div className="register-page-container">
+        <div className="register-page-inside-container">
+          <div className="register-page-main-container">
+            <div className="register-page-main-part-container">
+              <div className="register-page-data">
+                <div>
+                  <img
+                    src={MainLogo}
+                    alt="logo"
+                    width={"100px"}
+                    height={"100px"}
+                  />
                 </div>
+                <div className="greeting-message">Nice To Meet You</div>
+                <Form layout="vertical" onFinish={onFinish}>
+                  <div className="register-form-first-container">
+                    <Form.Item
+                      style={{
+                        minWidth: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      label="Name"
+                      name="name"
+                    >
+                      <Input placeholder="Name" type="text" />
+                    </Form.Item>
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="Username"
+                      name="username"
+                    >
+                      <Input placeholder="Username" />
+                    </Form.Item>
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="Email"
+                      name="email"
+                    >
+                      <Input placeholder="Email" type="text" />
+                    </Form.Item>
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="MobileNumber"
+                      name="mobileNumber"
+                    >
+                      <Input placeholder="MobileNumber" type="number" />
+                    </Form.Item>
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="WhatsappNumber"
+                      name="whatsappNumber"
+                    >
+                      <Input placeholder="WhatsappNumber" type="number" />
+                    </Form.Item>
+                  </div>
+                  <hr
+                    style={{ width: "100%", borderBottom: "1px solid black" }}
+                  />
+                  <div className="register-form-second-container">
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="Password"
+                      name="password"
+                    >
+                      <Input
+                        placeholder="Password"
+                        type={showPassword ? "text" : "password"}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      style={{ minWidth: "300px" }}
+                      label="ConfirmPassword"
+                      name="confirmPassword"
+                    >
+                      <Input placeholder="ConfirmPassword" type="password" />
+                    </Form.Item>
+                    <ReCAPTCHA
+                      style={{ marginTop: "10px" }}
+                      sitekey={process.env.REACT_APP_SITE_KEY}
+                      ref={captchaRef}
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                      width: "100%",
+                    }}
+                  >
+                    <button className="register-page-button" type="submit">
+                      REGISTER
+                    </button>
+                  </div>
+
+                  <Link to="/login" className="link-for-login">
+                    <span> Already have an account ?</span>
+                    <span> Login here</span>
+                  </Link>
+                </Form>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
         </>
     );
 }

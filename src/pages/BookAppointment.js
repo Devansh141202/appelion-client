@@ -47,14 +47,13 @@ function BookAppointment() {
                 setDoctor(response.data.data);
             }
         } catch (error) {
-            console.log(error);
             dispatch(hideLoading());
         }
     };
     // const sendEmail = async () => {
     //     try {
     //         const config = { headers: { "Content-Type": "application/json" } };
-    //         const { data } = await axios.post('http://localhost:5000/api/user/send-confirmation-email', config);
+    //         const { data } = await axios.post('http://34.131.197.1/api/user/send-confirmation-email', config);
     //         console.log(data);
     //     } catch (error) {
     //         console.log(error)

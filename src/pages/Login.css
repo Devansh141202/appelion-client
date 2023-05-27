@@ -14,12 +14,12 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 80%;
+  height: 85%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .login-main-container {
   border-radius: 30px;
-
   width: 100%;
   display: flex;
   align-items: center;
@@ -40,6 +40,7 @@
   width: 100%;
   height: 100%;
 }
+
 .login-main-part-container {
   width: 60%;
   height: 100%;
@@ -55,6 +56,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .login-data .greeting-message {
   text-align: center;
   width: 100%;
@@ -89,6 +91,7 @@
   align-items: center;
   gap: 10px;
 }
+
 .link-for-register :first-child {
   color: #000;
 }
@@ -100,8 +103,70 @@
   gap: 10px;
 }
 
-/* side menu */
+/* Responsive Styles */
 
-.active-menu-item {
-  background-color: #01325d !important;
+@media (max-width: 1024px) {
+  .login-inside-container {
+    width: 90%;
+  }
+
+  .login-main-container {
+    flex-direction: column;
+  }
+
+  .login-image-container {
+    display: none;
+  }
+
+  .login-main-part-container {
+    width: 100%;
+  }
+
+  .login-button {
+    width: 100%;
+  }
 }
+
+@media (max-width: 768px) {
+  .login-inside-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 560px) {
+  .login-inside-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .login-data {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-inside-container {
+    padding: 20px;
+  }
+
+  .login-data .greeting-message {
+    font-size: 30px;
+  }
+
+  .login-button {
+    padding: 15px;
+  }
+
+  .link-for-register {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-data .greeting-message {
+    font-size: 25px;
+  }
+
+  .link-for-forgot-password {
+    justify-content:center;}}
