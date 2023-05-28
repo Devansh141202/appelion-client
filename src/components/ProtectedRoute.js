@@ -24,6 +24,7 @@ function ProtectedRoute(props) {
             );
             dispatch(hideLoading());
             if (response.data.success) {
+                sessionStorage.setItem("role", response.data.data.role);
                 dispatch(setUser(response.data.data));
             } else {
                 sessionStorage.clear()
@@ -47,8 +48,9 @@ function ProtectedRoute(props) {
         if (user?.isEmailVerified === false && pathName !== "/email-not-verified") {
             return <Navigate to="/email-not-verified" />;
         }
+        let role = sessionStorage.getItem('role');
         if (pathName.includes("/admin")) {
-            if (user?.role === "admin") {
+            if (role === "admin") {
                 return props.children;
             }
             else {
@@ -56,7 +58,7 @@ function ProtectedRoute(props) {
             }
         }
         else if (pathName.includes("/user")) {
-            if (user?.role === "user") {
+            if (role === "user") {
                 return props.children;
             }
             else {
@@ -64,7 +66,7 @@ function ProtectedRoute(props) {
             }
         }
         else if (pathName.includes("/doctor")) {
-            if (user?.role === "doctor") {
+            if (role === "doctor") {
                 return props.children;
             }
             else {
