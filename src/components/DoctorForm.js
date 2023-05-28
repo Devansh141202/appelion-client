@@ -1,8 +1,11 @@
 import { Button, Col, Form, Input, Row, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function DoctorForm({ onFinish, initivalValues }) {
+  const { user } = useSelector((state) => state.user);
+
   return (
     <Form
       layout="vertical"
@@ -26,7 +29,12 @@ function DoctorForm({ onFinish, initivalValues }) {
             name="firstName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="First Name" />
+            <Input
+              style={{ cursor: "not-allowed" }}
+              defaultValue={user?.firstname}
+              readOnly
+              placeholder="First Name"
+            />
           </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={24} lg={8}>
@@ -36,7 +44,12 @@ function DoctorForm({ onFinish, initivalValues }) {
             name="lastName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Last Name" />
+            <Input
+              style={{ cursor: "not-allowed" }}
+              defaultValue={user?.lastname}
+              readOnly
+              placeholder="Last Name"
+            />
           </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={24} lg={8}>
@@ -46,7 +59,12 @@ function DoctorForm({ onFinish, initivalValues }) {
             name="phoneNumber"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Phone Number" />
+            <Input
+              style={{ cursor: "not-allowed" }}
+              defaultValue={user?.mobileNumber}
+              readOnly
+              placeholder="Phone Number"
+            />
           </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={24} lg={8}>

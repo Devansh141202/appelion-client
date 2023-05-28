@@ -16,7 +16,8 @@ export default function ProfilePage() {
         <div className="profile-page-main-container">
           <div className="profile-page">
             <div className="book-appointment-card-header-name">
-              {user?.role === "doctor" ? "Dr." : ""} {user?.name}
+              {user?.role === "doctor" ? "Dr." : ""}{" "}
+              {user?.firstname + " " + user?.lastname}
             </div>
             <hr style={{ width: "100%", borderBottom: "1px solid black" }} />
             <div
