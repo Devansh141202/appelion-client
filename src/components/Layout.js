@@ -211,7 +211,7 @@ function Layout({ children }) {
                 to="/profile-page"
               >
                 <FaUserCircle style={{ margin: "5px", fontSize: "25px" }} />
-                {user?.name}
+                {user?.username}
               </Link>
             </div>
           </div>
