@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../layout.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Badge, Modal } from "antd";
 import { setUser } from "../redux/userSlice";
@@ -122,6 +122,9 @@ function Layout({ children }) {
               const isActive = location.pathname === menu.path;
               return (
                 <div
+                  onClick={() => {
+                    navigate(`${menu.path}`);
+                  }}
                   className={`d-flex menu-item ${
                     isActive && "active-menu-item"
                   }`}
@@ -132,7 +135,10 @@ function Layout({ children }) {
               );
             })}
             <div className={`d-flex menu-item `}>
-              <i className="ri-logout-circle-line"></i>
+              <i
+                className="ri-logout-circle-line"
+                onClick={() => setIsModelOpen(true)}
+              ></i>
               {!collapsed && (
                 <div
                   style={{
@@ -150,6 +156,11 @@ function Layout({ children }) {
                   >
                     Logout
                   </div>
+                </div>
+              )}
+              {isModalOpen && (
+                <>
+                  {" "}
                   <Modal
                     title="Are you sure ?"
                     visible={isModalOpen}
@@ -158,7 +169,7 @@ function Layout({ children }) {
                     }}
                     onCancel={() => setIsModelOpen(false)}
                   ></Modal>
-                </div>
+                </>
               )}
             </div>
           </div>
