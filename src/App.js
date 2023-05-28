@@ -9,7 +9,7 @@ import {
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Button } from "antd";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -34,6 +34,7 @@ import EmailNotVerified from "./pages/EmailNotVerified";
 import DoctorProfile from "./pages/Admin/DoctorProfile"
 
 function App() {
+    toast.success("This website is integrated with Google analytics for performance measures")
     const { isUp } = useSelector((state) => state.serverStatus);
     const { loading } = useSelector((state) => state.alerts);
     const dispatch = useDispatch();
