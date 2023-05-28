@@ -34,7 +34,6 @@ import EmailNotVerified from "./pages/EmailNotVerified";
 import DoctorProfile from "./pages/Admin/DoctorProfile"
 
 function App() {
-    toast.success("This website is integrated with Google analytics for performance measures", {duration:5000})
     const { isUp } = useSelector((state) => state.serverStatus);
     const { loading } = useSelector((state) => state.alerts);
     const dispatch = useDispatch();
