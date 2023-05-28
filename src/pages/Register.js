@@ -10,98 +10,105 @@ import MainLogo from "../logo1.png";
 import ReCAPTCHA from "react-google-recaptcha";
 
 function Register() {
-    const captchaRef = useRef(null);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
-    const onFinish = async (values) => {
-        // console.log(values);
-        const {
-            name,
-            username,
-            mobileNumber,
-            whatsappNumber,
-            email,
-            password,
-            confirmPassword,
-        } = values;
+  const captchaRef = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const onFinish = async (values) => {
+    // console.log(values);
+    const {
+      firstname,
+      lastname,
+      username,
+      mobileNumber,
+      whatsappNumber,
+      email,
+      password,
+      confirmPassword,
+    } = values;
 
-        if (!name || !name.trim()) {
-            return toast.error("Name cannot be empty");
-        }
+    if (!firstname || !firstname.trim()) {
+      return toast.error("First Name cannot be empty");
+    }
+    if (!lastname || !lastname.trim()) {
+      return toast.error("Last Name cannot be empty");
+    }
 
-        if (!username || !username.trim()) {
-            return toast.error("Username cannot be empty");
-        }
-        if (!email || !email.trim()) {
-            return toast.error("Email cannot be empty");
-        }
+    if (!username || !username.trim()) {
+      return toast.error("Username cannot be empty");
+    }
+    if (!email || !email.trim()) {
+      return toast.error("Email cannot be empty");
+    }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return toast.error("Invalid email format");
-        }
-        if (!mobileNumber || !mobileNumber.trim()) {
-            return toast.error("Mobile number cannot be empty");
-        }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return toast.error("Invalid email format");
+    }
+    if (!mobileNumber || !mobileNumber.trim()) {
+      return toast.error("Mobile number cannot be empty");
+    }
 
-        const mobileNumberRegex = /^[6-9]\d{9}$/;
+    const mobileNumberRegex = /^[6-9]\d{9}$/;
 
-        if (!mobileNumberRegex.test(mobileNumber)) {
-            return toast.error("Invalid mobile number");
-        }
+    if (!mobileNumberRegex.test(mobileNumber)) {
+      return toast.error("Invalid mobile number");
+    }
 
-        if (!whatsappNumber || !whatsappNumber.trim()) {
-            return toast.error("WhatsApp number cannot be empty");
-        }
+    if (!whatsappNumber || !whatsappNumber.trim()) {
+      return toast.error("WhatsApp number cannot be empty");
+    }
 
-        if (!mobileNumberRegex.test(whatsappNumber)) {
-            return toast.error("Invalid Indian Whatsapp number");
-        }
+    if (!mobileNumberRegex.test(whatsappNumber)) {
+      return toast.error("Invalid Indian Whatsapp number");
+    }
 
-        if (password.length < 6) {
-            return toast.error("Password should be at least 6 characters long");
-        }
+    if (password.length < 6) {
+      return toast.error("Password should be at least 6 characters long");
+    }
 
-        const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-        if (!passwordRegex.test(password)) {
-            return toast.error(
-                "Password should contain at least one lowercase letter, one uppercase letter, one digit, and one special character"
-            );
-        }
-        if (password !== confirmPassword) {
-            return toast.error("Passwords do not match ");
-        }
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    if (!passwordRegex.test(password)) {
+      return toast.error(
+        "Password should contain at least one lowercase letter, one uppercase letter, one digit, and one special character"
+      );
+    }
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match ");
+    }
 
-        try {
-            dispatch(showLoading());
-            const token = captchaRef.current.getValue();
-            if (!token) {
-                dispatch(hideLoading());
-                captchaRef.current.reset();
-                return toast.error("Please verify that you are not a robot");
-            }
-            values.token = token;
-            delete values.confirmPassword;
-            const response = await axios.post("http://34.131.197.1/api/user/register", values);
-            dispatch(hideLoading());
-            if (response.data.success) {
-                toast.success(response.data.message);
-                navigate("/login");
-            } else {
-                toast.error(response.data.message);
-            }
-            captchaRef.current.reset();
-        } catch (error) {
-            dispatch(hideLoading());
-            toast.error("Something went wrong");
-        }
-    };
+    try {
+      dispatch(showLoading());
+      const token = captchaRef.current.getValue();
+      if (!token) {
+        dispatch(hideLoading());
+        captchaRef.current.reset();
+        return toast.error("Please verify that you are not a robot");
+      }
+      values.token = token;
+      delete values.confirmPassword;
+      const response = await axios.post(
+        "http://34.131.197.1/api/user/register",
+        values
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/login");
+      } else {
+        toast.error(response.data.message);
+      }
+      captchaRef.current.reset();
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error("Something went wrong");
+    }
+  };
 
-    return (
-        <>
-        <div className="register-page-container">
+  return (
+    <>
+      <div className="register-page-container">
         <div className="register-page-inside-container">
           <div className="register-page-main-container">
             <div className="register-page-main-part-container">
@@ -123,10 +130,21 @@ function Register() {
                         display: "flex",
                         flexDirection: "column",
                       }}
-                      label="Name"
-                      name="name"
+                      label="First Name"
+                      name="firstname"
                     >
-                      <Input placeholder="Name" type="text" />
+                      <Input placeholder="First Name" type="text" />
+                    </Form.Item>
+                    <Form.Item
+                      style={{
+                        minWidth: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      label="Last Name"
+                      name="lastname"
+                    >
+                      <Input placeholder="Last Name" type="text" />
                     </Form.Item>
                     <Form.Item
                       style={{ minWidth: "300px" }}
@@ -210,8 +228,8 @@ function Register() {
           </div>
         </div>
       </div>
-        </>
-    );
+    </>
+  );
 }
 
 export default Register;
