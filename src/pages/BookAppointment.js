@@ -207,6 +207,10 @@ function BookAppointment() {
                                     style={{ width: "100%", borderBottom: "1px solid black" }}
                                 />
                                 <DatePicker
+                                    disabledDate={(current) => {
+                                        return moment().add(-1, 'days') >= current ||
+                                            moment().add(2, 'month') <= current;
+                                    }}
                                     style={{ width: "50%" }}
                                     format="DD-MM-YYYY"
                                     onChange={(value) => {
