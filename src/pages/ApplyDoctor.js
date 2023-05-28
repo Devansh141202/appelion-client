@@ -16,6 +16,9 @@ function ApplyDoctor() {
     const onFinish = async (values) => {
         try {
             dispatch(showLoading());
+            values.firstName = user?.firstname;
+            values.lastName = user?.lastname;
+            values.phoneNumber = user?.mobileNumber;
             const response = await axios.post(
                 "http://34.131.197.1/api/user/apply-doctor-account",
                 {
